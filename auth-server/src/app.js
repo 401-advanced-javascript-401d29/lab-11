@@ -21,6 +21,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+app.use('/docs', express.static('docs'));
 app.use(authRouter);
 app.use(bookRoutes);
 
@@ -30,7 +31,11 @@ app.use(errorHandler);
 
 
 let isRunning = false;
-
+/**
+ * @Function start
+ * Starts the server on the specific port
+ * @param  {integer} port
+ */
 module.exports = {
   server: app,
   start: (port) => {

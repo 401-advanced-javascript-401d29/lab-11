@@ -3,7 +3,7 @@
     "include" : ["./auth-server/src"]
   },
   "opts": {
-    "destination": "./docs/",
+    "destination": "/docs/",
     "recurse": true
   }
 }
