@@ -11,4 +11,4 @@ const options = {
 mongoose.connect(process.env.MONGODB_URI, options);
 
 // Start the web server
-require('./auth-server/src/app.js').start(process.env.PORT);
+require('./src/app.js').start(process.env.PORT);

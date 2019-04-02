@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: src/auth/router</title>
+    <title>JSDoc: Module: src/routes</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: src/auth/router</h1>
+    <h1 class="page-title">Module: src/routes</h1>
 
     
 
@@ -38,8 +38,8 @@
     <div class="container-overview">
     
         
-            <div class="description">Router Middleware
-Integrates with other middleware and uses `.post()` methods to authorize the user to signup and signin users attempting to access the /signin and /signup routes.</div>
+            <div class="description">Router Middleware for Books
+Integrates with other middleware and uses `.get()` methods to check if a user is authorizes before getting the requested book information.</div>
         
 
         
@@ -88,7 +88,7 @@ Integrates with other middleware and uses `.post()` methods to authorize the use
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth_router.js.html">auth/router.js</a>, <a href="auth_router.js.html#line3">line 3</a>
+        <a href="routes_books.js.html">routes/books.js</a>, <a href="routes_books.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -143,13 +143,16 @@ Integrates with other middleware and uses `.post()` methods to authorize the use
     
 
     
-    <h4 class="name" id="~/signinAccessestheusers-modeltoauthenticateexistingusersusingthe.post()method."><span class="type-signature">(inner) </span>/signin
-Accesses the users-model to authenticate existing users using the .post() method.<span class="signature">(res, next)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~handleGetAll"><span class="type-signature">(inner) </span>handleGetAll<span class="signature">(req, res, next)</span><span class="type-signature"></span></h4>
     
 
     
 
 
+
+<div class="description">
+    Function that gets all books for the books route
+</div>
 
 
 
@@ -184,6 +187,29 @@ Accesses the users-model to authenticate existing users using the .post() method
 
         <tr>
             
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>res</code></td>
             
 
@@ -200,7 +226,7 @@ Accesses the users-model to authenticate existing users using the .post() method
 
             
 
-            <td class="description last">Express response object</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -208,29 +234,6 @@ Accesses the users-model to authenticate existing users using the .post() method
         <tr>
             
                 <td class="name"><code>next</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Express middleware next()</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>req.token</code></td>
             
 
             <td class="type">
@@ -246,7 +249,7 @@ Accesses the users-model to authenticate existing users using the .post() method
 
             
 
-            <td class="description last">Express request object</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -287,7 +290,7 @@ Accesses the users-model to authenticate existing users using the .post() method
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth_router.js.html">auth/router.js</a>, <a href="auth_router.js.html#line33">line 33</a>
+        <a href="routes_books.js.html">routes/books.js</a>, <a href="routes_books.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -321,13 +324,16 @@ Accesses the users-model to authenticate existing users using the .post() method
     
 
     
-    <h4 class="name" id="~/signupAccessestheusers-modeltogenerateanewUserusingthe.post()methodiftheuserdoesnotexistandsavesthenewusertothedatabaseandreturnsapromisethatcontainsaresponseobjectthatcontainstheauthorizedusertokenanduserdata.Sendstheresponseobjecttothecookieandtheheader."><span class="type-signature">(inner) </span>/signup
-Accesses the users-model to generate a new User using the .post() method if the user does not exist and saves the new user to the database and returns a promise that contains a response object that contains the authorized user token and user data. Sends the response object to the cookie and the header.<span class="signature">(res, next)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~handleGetOne"><span class="type-signature">(inner) </span>handleGetOne<span class="signature">(req, res, next)</span><span class="type-signature"></span></h4>
     
 
     
 
 
+
+<div class="description">
+    Function that gets one book for the books/id route
+</div>
 
 
 
@@ -362,6 +368,29 @@ Accesses the users-model to generate a new User using the .post() method if the 
 
         <tr>
             
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>res</code></td>
             
 
@@ -378,7 +407,7 @@ Accesses the users-model to generate a new User using the .post() method if the 
 
             
 
-            <td class="description last">Express response object</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -386,29 +415,6 @@ Accesses the users-model to generate a new User using the .post() method if the 
         <tr>
             
                 <td class="name"><code>next</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Express middleware next()</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>req.token</code></td>
             
 
             <td class="type">
@@ -424,7 +430,7 @@ Accesses the users-model to generate a new User using the .post() method if the 
 
             
 
-            <td class="description last">Express request object</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -465,7 +471,7 @@ Accesses the users-model to generate a new User using the .post() method if the 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth_router.js.html">auth/router.js</a>, <a href="auth_router.js.html#line14">line 14</a>
+        <a href="routes_books.js.html">routes/books.js</a>, <a href="routes_books.js.html#line41">line 41</a>
     </li></ul></dd>
     
 

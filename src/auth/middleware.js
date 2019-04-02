@@ -66,7 +66,7 @@ module.exports = (req, res, next) => {
   }
   /**
    * Throws a 401 error if the username/password combination is invalid or not authorized
-   * @param  {error message} next
+   * @param  {function} next
    */
   function _authError() {
     next({status: 401, statusMessage: 'Unauthorized', message: 'Invalid User ID/Password'});

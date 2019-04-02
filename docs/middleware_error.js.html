@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: auth/router.js</title>
+    <title>JSDoc: Source: middleware/error.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: auth/router.js</h1>
+    <h1 class="page-title">Source: middleware/error.js</h1>
 
     
 
@@ -27,51 +27,27 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-
 /**
- * Router Middleware
- * Integrates with other middleware and uses `.post()` methods to authorize the user to signup and signin users attempting to access the /signin and /signup routes.
- * @module src/auth/router
+ * 500 Middleware
+ * @module middleware/error
  */
 
-const express = require('express');
-const authRouter = express.Router();
-
-const User = require('./users-model.js');
-const auth = require('./middleware.js');
 /**
- * @function
- * @name /signup
- * Accesses the users-model to generate a new User using the .post() method if the user does not exist and saves the new user to the database and returns a promise that contains a response object that contains the authorized user token and user data. Sends the response object to the cookie and the header.
- * @param  {object} res Express response object
- * @param  {function} next Express middleware next()
- * @param  {object} req.token Express request object
+ * Sends a JSON Formatted 500 Response
+ * @param err {string} Error Text
+ * @param req {object} Express Request Object
+ * @param res {object} Express Response Object
+ * @param next {function} Express middleware next()
  */
-authRouter.post('/signup', (req, res, next) => {
-  let user = new User(req.body);
-  user.save()
-    .then( (user) => {
-      req.token = user.generateToken();
-      req.user = user;
-      res.set('token', req.token);
-      res.cookie('auth', req.token);
-      res.send(req.token);
-    }).catch(next);
-});
-/**
- * @function
- * @name /signin
- * Accesses the users-model to authenticate existing users using the .post() method.
- * @param  {object} res Express response object
- * @param  {function} next Express middleware next()
- * @param  {object} req.token Express request object
- */
-authRouter.post('/signin', auth, (req, res, next) => {
-  res.cookie('auth', req.token);
-  res.send(req.token);
-});
-
-module.exports = authRouter;
+module.exports = (err, req, res, next) => {
+  console.error('__SERVER_ERROR__', err);
+  let error = { error: err.message || err };
+  res.statusCode = err.status || 500;
+  res.statusMessage = err.statusMessage || 'Server Error';
+  res.setHeader('Content-Type', 'application/json');
+  res.write( JSON.stringify(error) );
+  res.end();
+};
 </code></pre>
         </article>
     </section>

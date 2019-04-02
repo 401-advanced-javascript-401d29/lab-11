@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: app.js</title>
+    <title>JSDoc: Source: middleware/404.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: app.js</h1>
+    <h1 class="page-title">Source: middleware/404.js</h1>
 
     
 
@@ -27,58 +27,25 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
-
-// 3rd Party Resources
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-
-// Esoteric Resources
-const errorHandler = require( './middleware/error.js');
-const notFound = require( './middleware/404.js' );
-const authRouter = require( './auth/router.js' );
-const bookRoutes = require( './routes/books.js' );
-
-// Prepare the express app
-const app = express();
-
-// App Level MW
-app.use(cors());
-app.use(morgan('dev'));
-
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-
-app.use('/docs', express.static('docs'));
-app.use(authRouter);
-app.use(bookRoutes);
-
-// Catchalls
-app.use(notFound);
-app.use(errorHandler);
-
-
-let isRunning = false;
 /**
- * @Function start
- * Starts the server on the specific port
- * @param  {integer} port
+ * 404 Middleware
+ * @module middleware/404
  */
-module.exports = {
-  server: app,
-  start: (port) => {
-    if( ! isRunning ) {
-      app.listen(port, () => {
-        isRunning = true;
-        console.log(`Server Up on ${port}`);
-      });
-    }
-    else {
-      console.log('Server is already running');
-    }
-  },
-};
-</code></pre>
+
+/**
+ * Sends a JSON Formatted 404 Response
+ * @param req {object} Express Request Object
+ * @param res {object} Express Response Object
+ * @param next {function} Express middleware next()
+ */
+module.exports = (req,res,next) => {
+  let error = { error: 'Resource Not Found' };
+  res.statusCode = 404;
+  res.statusMessage = 'Not Found';
+  res.setHeader('Content-Type', 'application/json');
+  res.write(JSON.stringify(error));
+  res.end();
+};</code></pre>
         </article>
     </section>
 
